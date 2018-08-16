@@ -7,7 +7,6 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class GooglePlayParser {
     private String developerID;
@@ -17,9 +16,9 @@ public class GooglePlayParser {
         this.developerID = developerID;
     }
 
-    public List<App> parse(){
+    public ArrayList<App> parse(){
         Document doc = null;
-        List<App> resultList = new ArrayList<App>();
+        ArrayList<App> resultList = new ArrayList<App>();
 
         try {
             doc = Jsoup.connect("https://play.google.com/store/apps/developer?id=" + this.developerID).get();//"http://en.wikipedia.org/"
@@ -28,7 +27,6 @@ public class GooglePlayParser {
             e.printStackTrace();
         }
 
-       // log(doc.title());
         Elements newsHeadlines = doc.select(".card-content");
         for (Element headline : newsHeadlines) {
             String appId =  headline.attr("data-docid");
@@ -42,7 +40,7 @@ public class GooglePlayParser {
                 Float rate = Float.parseFloat(rateElem.substring(rateElem.indexOf("width") + 7, rateElem.indexOf("%"))) * 5 / 100;
                 nApp.setRate(rate);
             }
-            System.out.println(appId);
+
             resultList.add(nApp);
         }
 

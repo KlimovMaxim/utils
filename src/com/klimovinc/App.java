@@ -62,4 +62,11 @@ public class App {
     public float getRate() {
         return rate;
     }
+
+    @Override
+    public String toString() {
+        return this.appID;
+    }
+
+
 }
