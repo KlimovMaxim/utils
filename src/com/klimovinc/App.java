@@ -1,7 +1,5 @@
 package com.klimovinc;
 
-import java.net.URL;
-
 public class App {
     String appID;
     String name;
